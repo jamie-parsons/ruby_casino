@@ -4,7 +4,7 @@ class HeadsTails
   attr_accessor :player, :total, :bet
   def initialize(player)
     # @player = Player.new
-    puts "Welecome to Heads Tails"
+    puts "Welcome to Heads Tails"
     puts "#{player.name} you have a balance of: #{player.wallet.amount}"
     bet(player)
   end

@@ -10,7 +10,12 @@ class Player
     @name = gets.strip
     puts "What is your age player?"
     @age = gets.strip.to_i
-    puts 'How much money are you playing with?'
-    @wallet = Wallet.new(gets.to_f) 
+    if @age >= 21
+      puts 'How much money are you playing with?'
+      @wallet = Wallet.new(gets.to_f)
+    else
+      puts "You're too young!"
+      exit
+    end
   end
 end
