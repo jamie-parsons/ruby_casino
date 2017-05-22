@@ -10,22 +10,27 @@ class HeadsTails
   end
 
   def bet(player)
-    puts "How much would you like to bet?"
-    @bet = gets.to_i
-    puts "Heads or Tails
-          0) Heads
-          1) Tails"
-    choice = gets.to_i
-    game_choice = rand(1)
-    if choice == game_choice
-      puts "You win!"
-      player.wallet.update_money(@bet, true)
+    puts "Place your bet, or enter q to quit?"
+    bet = gets.strip
+    playing = true
+    if bet == "q"
+      playing = false
     else
-      puts "Sorry you lose"
-      player.wallet.update_money(@bet, false)
+      puts "Heads or Tails
+      0) Heads
+      1) Tails"
+      choice = gets.to_i
+      game_choice = rand(1)
+      if choice == game_choice
+        puts "You win!"
+        player.wallet.update_money(@bet, true)
+      else
+        puts "Sorry you lose"
+        player.wallet.update_money(@bet, false)
+      end
     end
-    # while @bet == 0 || 1 do
-    #   bet
+    while playing do
+      bet(player)
     end
   end
 end
