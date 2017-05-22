@@ -26,7 +26,7 @@ attr_accessor :player
     when 1
       games_menu
     when 2
-      puts "bank roll"
+      puts player.wallet.amount
     when 3
       puts "Quit"
       Quit
