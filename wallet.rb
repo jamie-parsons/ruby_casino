@@ -3,7 +3,7 @@ class Wallet
 
   def initialize(amount)
     if
-      @amount == Int
+      @amount ==
     else
       puts "Please enter a number"
     end
@@ -11,14 +11,15 @@ class Wallet
     if
       @amount > 1000
       puts "You have exceeded the limit"
+      wallet
     elsif
       @amount < 1
       puts "You do not have enough money to play"
+      wallet
     else
     @amount = amount
     end
   end
-
 
   def update_money(bet, win = true)
     if win
