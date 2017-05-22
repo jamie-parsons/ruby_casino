@@ -2,10 +2,11 @@ require_relative 'player'
 require_relative 'deck'
 require_relative 'card'
 
-class HeadsTails
-  attr_accessor :player, :total, :bet
+class HighLow
+  attr_accessor :player, :bet, :deck
   def initialize(player)
     # @player = Player.new
+    @deck = Deck.new.shuffle_cards
     puts "Welcome to High Low!"
     puts "#{player.name} you have a balance of: #{player.wallet.amount}"
     bet(player)
@@ -14,20 +15,50 @@ class HeadsTails
   def bet(player)
     puts "How much would you like to bet?"
     @bet = gets.to_i
-    puts "Here is the card"
-    Deck.new
-    p
-    puts "Higher or lower?
-          0) Higher
-          1) Lower"
+    card_1 = @deck.pop
+    puts "The first card is #{card_1.rank}"
+    puts "Is the next card Higher or lower?
+          1) Higher
+          2) Lower"
     choice = gets.to_i
-    game_choice = rand(1)
-    if choice == game_choice
-      puts "You win!"
-      player.wallet.update_money(@bet, true)
+    card_2 = @deck.pop
+    puts "The next card is #{card_2.rank}"
+    card_rank(card_1, card_2)
+  end
+
+  def case
+    case choice
+    when 1
+      if card_1.rank.to_i < card_2.rank.to_i
+        puts "You win"
+      else
+        puts "You Lose"
+      end
+    when 2
+      if card_1.rank.to_i > card_2.rank.to_i
+        puts "You lose"
+      else
+        puts "You win"
+      end
     else
-      puts "Sorry you lose"
-      player.wallet.update_money(@bet, false)
+      puts "There are only 2 choices"
     end
   end
+
+  def card_rank(card_1, card_2)
+    if card_1.rank == 'J' || card_2.rank == 'J'
+      card_1.rank = 11
+      card_2.rank = 11
+    elsif card_1.rank == 'Q' || card_2.rank == 'Q'
+      card_1.rank = 12
+      card_2.rank = 12
+    elsif card_1.rank == 'K' || card_2.rank == 'K'
+      card_1.rank = 13
+      card_2.rank = 13
+    else
+      card_1.rank.to_i
+      card_2.rank.to_i
+  end
+    case()
+end
 end

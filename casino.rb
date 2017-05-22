@@ -6,6 +6,7 @@ require 'colorize'
 require_relative 'player'
 require_relative 'head_tails'
 require_relative 'snake_eyes'
+require_relative 'high_low'
 
 class Casino
 attr_accessor :player
@@ -51,7 +52,7 @@ attr_accessor :player
     when 1
       HeadsTails.new(player)
     when 2
-      puts 'High low'
+      HighLow.new(player)
     when 3
       SnakeEyes.new(player)
     when 4
