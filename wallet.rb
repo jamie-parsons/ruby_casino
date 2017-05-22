@@ -1,24 +1,21 @@
 class Wallet
   attr_accessor :amount
 
-  def initialize(amount)
-    if
-      @amount ==
-    else
-      puts "Please enter a number"
-    end
+  def initialize
+    @amount = validate_amount
+  end
 
-    if
-      @amount > 1000
+  def validate_amount
+    puts "How much are you playing with?"
+    amount = gets.strip.to_f
+    if amount > 1000
       puts "You have exceeded the limit"
-      wallet
-    elsif
-      @amount < 1
+      validate_amount
+    elsif amount < 1
       puts "You do not have enough money to play"
-      wallet
-    else
-    @amount = amount
+      validate_amount
     end
+      amount
   end
 
   def update_money(bet, win = true)
