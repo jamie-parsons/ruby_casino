@@ -11,6 +11,6 @@ class Player
     puts "What is your age player?"
     @age = gets.strip.to_i
     puts 'How much money are you playing with?'
-    @wallet = Wallet.new(gets.to_f)
+    @wallet = Wallet.new(gets.to_f) 
   end
 end
