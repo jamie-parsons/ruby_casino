@@ -21,7 +21,7 @@ class SnakeEyes
       puts "You win!"
       player.wallet.update_money(@bet, true)
     else
-      puts "Sorry you lose"
+      puts " Sorry you lose"
       player.wallet.update_money(@bet, false)
     end
   end

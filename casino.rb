@@ -5,6 +5,7 @@ require 'colorize'
 #Pull in other classes you may need
 require_relative 'player'
 require_relative 'head_tails'
+require_relative 'snake_eyes'
 
 class Casino
 attr_accessor :player
@@ -39,7 +40,7 @@ attr_accessor :player
     puts 'What game do you want to play?
           1) Head Tails
           2) High Low
-          3) Another easy game
+          3) Snake Eyes
           4) Quit'
     user_input = gets.to_i
 
@@ -49,7 +50,7 @@ attr_accessor :player
     when 2
       puts 'High low'
     when 3
-      puts 'Another easy game'
+      SnakeEyes.new(player)
     when 4
       puts 'quit'
     else
