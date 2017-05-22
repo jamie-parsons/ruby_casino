@@ -5,11 +5,11 @@ class Wallet
     @amount = amount
   end
 
-  def update_money(bet, multiplier, win = true)
+  def update_money(bet, win = true)
     if win
-      @amount += bet * multiplier
+      @amount += bet
     else
-      @amount -= bet * multiplier
+      @amount -= bet
     end
     puts "Your wallet now has #{amount}"
   end

@@ -19,10 +19,10 @@ class HeadsTails
     game_choice = rand(1)
     if choice == game_choice
       puts "You win!"
-      player.wallet.update_money(@bet, 2)
+      player.wallet.update_money(@bet, true)
     else
       puts "Sorry you lose"
-      player.wallet.update_money(@bet, 0.5)
+      player.wallet.update_money(@bet, false)
     end
   end
 end
