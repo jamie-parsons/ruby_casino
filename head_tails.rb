@@ -24,8 +24,8 @@ class HeadsTails
       puts "Sorry you lose"
       player.wallet.update_money(@bet, false)
     end
-    while @bet == 0 || 1 do
-      bet
+    # while @bet == 0 || 1 do
+    #   bet
     end
   end
 end
