@@ -25,7 +25,4 @@ class HeadsTails
       player.wallet.update_money(@bet, 0.5)
     end
   end
-
-
-
 end
