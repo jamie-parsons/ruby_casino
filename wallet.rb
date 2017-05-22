@@ -5,10 +5,15 @@ class Wallet
     @amount = validate_amount
   end
 
+<<<<<<< HEAD
   def validate_amount
     puts "How much are you playing with?"
     amount = gets.strip.to_f
     if amount > 1000
+=======
+    if
+    @amount > 1000
+>>>>>>> changes
       puts "You have exceeded the limit"
       validate_amount
     elsif amount < 1
