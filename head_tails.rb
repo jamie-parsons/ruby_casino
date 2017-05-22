@@ -6,10 +6,10 @@ class HeadsTails
     # @player = Player.new
     puts "Welecome to Heads Tails"
     puts "#{player.name} you have a balance of: #{player.wallet.amount}"
-    bet
+    bet(player)
   end
 
-  def bet
+  def bet(player)
     puts "How much would you like to bet?"
     @bet = gets.to_i
     start_game
@@ -24,6 +24,7 @@ class HeadsTails
     if choice == game_choice
       @total = @bet * 2
       puts "You win!"
+      player.wallet.add_money(@total, 'subtract')
       update_wallet
     else
       puts "Sorry you lose"
@@ -32,10 +33,10 @@ class HeadsTails
     end
   end
 
-  def update_wallet
-    puts @total
-    player.wallet.amount = player.wallet.amount + @total
-    puts "This is your current wallet #{player.wallet.amount}"
-  end
+  # def update_wallet
+  #   puts @total
+  #   player.wallet.amount = player.wallet.amount + @total
+  #   puts "This is your current wallet #{player.wallet.amount}"
+  # end
 
 end
