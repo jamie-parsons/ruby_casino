@@ -1,3 +1,6 @@
+require_relative 'card'
+require 'pry'
+
 class Deck
  # Getter and Setter methods for rank, suit and color
  attr_accessor :cards
@@ -24,4 +27,11 @@ class Deck
      end
    end
  end
+
+ def show_card
+ d = Deck.new
+ card = d.cards.pop
+ puts "#{card.rank} #{card.suit} "
+ end
+
 end
