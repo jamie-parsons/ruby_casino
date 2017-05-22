@@ -6,7 +6,6 @@ class Wallet
   end
 
   def validate_amount
-    puts "How much are you playing with?"
     amount = gets.strip.to_f
     if amount > 1000
       puts "You have exceeded the limit"
@@ -15,7 +14,7 @@ class Wallet
       puts "You do not have enough money to play"
       validate_amount
     end
-      amount
+    amount
   end
 
   def update_money(bet, win = true)

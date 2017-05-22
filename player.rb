@@ -8,9 +8,16 @@ class Player
     #(class? attribute?)
     puts "What is your name player?"
     @name = gets.strip
+    if @name == ""
+      puts "Error, invalid input."
+      initialize
+    end
     puts "What is your age player?"
-    @age = gets.strip.to_i
-    if @age >= 21
+    @age = gets.strip
+    if @age == ""
+      puts "Error, invalid input."
+      initialize
+    elsif @age.to_i >= 21
       puts 'How much money are you playing with?'
       @wallet = Wallet.new
     else

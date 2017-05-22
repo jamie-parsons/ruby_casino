@@ -30,10 +30,11 @@ attr_accessor :player
       puts player.wallet.amount
     when 3
       puts "Quit"
-      Quit
+      exit
     else
       puts "There are only 3 options"
     end
+    casino_menu
   end
 
   def games_menu
@@ -41,7 +42,8 @@ attr_accessor :player
           1) Head Tails
           2) High Low
           3) Snake Eyes
-          4) Quit'
+          4) Bank Roll
+          5) Quit'
     user_input = gets.to_i
 
     case user_input
@@ -52,6 +54,8 @@ attr_accessor :player
     when 3
       SnakeEyes.new(player)
     when 4
+      puts player.wallet.amount
+    when 5
       puts 'quit'
     else
       puts 'There are only 4 options'
