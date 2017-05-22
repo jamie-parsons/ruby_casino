@@ -58,7 +58,7 @@ attr_accessor :player
     when 5
       puts 'quit'
     else
-      puts 'There are only 4 options'
+      puts 'There are only 5 options'
     end
   end
 end
