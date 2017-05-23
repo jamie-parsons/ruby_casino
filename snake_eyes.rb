@@ -16,7 +16,7 @@ class SnakeEyes
 
   def bet(player)
     puts "How much would you like to bet?
-          Or type quit to exit."
+          Type 'Quit' to go games menu"
     @bet = gets.to_f
     if @bet == 0
       puts "Goodbye!".colorize(:yellow)

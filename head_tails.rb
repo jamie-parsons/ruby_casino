@@ -15,7 +15,8 @@ class HeadsTails
 
   def bet(player)
 
-    puts "Place your bet or type 'Quit'"
+    puts "Place your bet
+          Type 'Quit' to go games menu"
       @bet = gets.to_f
       if @bet == 0
         puts "Goodbye!".colorize(:yellow)
