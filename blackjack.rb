@@ -46,17 +46,28 @@ class Blackjack
       end
       win_lose(player)
     elsif card_question == "N" #compare hands
+      "You stay with #{@player_total_new}"
       if @dealer_total_1 < 18
           dealer_card_3 = card_check(d.show_card.rank)
           @dealer_total_new = @dealer_total_1 + dealer_card_3
           puts "The dealer's hand is #{@dealer_total_new}"
+          if @player_total_new < @dealer_total_1
+            "Dealer wins with #{@dealer_total_1}!"
+            player.wallet.update_money(@bet, false)
+          else
+            "You win with #{player_total_new}"
+            player.wallet.update_money(@bet, true)
+          end
+      else
+          puts "Dealer stays at #{@dealer_total_1}"
+
     else
       puts "Error, please make a valid entry!"
       draw(player)
     end
   end
 
-  def win_lose(player)
+  def bust_draw(player)
     if @player_total_new > 21
       puts "You bust!"
       player.wallet.update_money(@bet, false)
@@ -85,16 +96,17 @@ class Blackjack
       10
     elsif card == 'A'
       puts "Choose 1 or 11"
-      ace_input = gets.strip
-      # if ace_input == "1"   #not adding totals to wallet? added else condition => didn't fix
-      #    1
-      # elsif ace_input == "11"
-      #    11
-      # else
-      #   puts "Error, please try again!"
+      ace_input = gets.strip.to_i
+      binding.pry
+       if ace_input == 1   #not adding totals to wallet? added else condition => didn't fix
+         1
+       elsif ace_input == 11
+          11
+       else
+        puts "Error, please try again!"
         card_check
-      # end
-      # card.to_i
+       end
+       card.to_i
     else
       card.to_i
     end
