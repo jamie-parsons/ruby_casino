@@ -1,3 +1,5 @@
+require 'colorize'
+
 require_relative 'player'
 require_relative 'dice'
 
@@ -21,12 +23,12 @@ class SnakeEyes
     roll = Dice.new
     roll.show_dice
       if roll.sum == 2
-        puts "You win!"
+        puts "You win #{@bet * 10}!".colorize(:green)
         @bet = @bet * 10
         player.wallet.update_money(@bet, true)
         bet(player)
       else
-        puts "\nSorry you lose"
+        puts "\nSorry you lost #{@bet/2}".colorize(:red)
         @bet = @bet / 2
         player.wallet.update_money(@bet, false)
         bet(player)

@@ -1,4 +1,5 @@
 require 'pry'
+require 'colorize'
 
 require_relative 'player'
 require_relative 'deck'
@@ -35,26 +36,26 @@ class HighLow
     case choice
     when 1
       if @card_1best < @card_2best
-        puts "You win $#{@bet}"
+        puts "You win $#{@bet}".colorize(:green)
         player.wallet.update_money(@bet, true)
         bet(player)
       else
-        puts "You lost $#{@bet}"
+        puts "You lost $#{@bet}".colorize(:red)
         player.wallet.update_money(@bet, false)
         bet(player)
       end
     when 2
       if @card_1best > @card_2best
-        puts "You win $#{@bet}"
+        puts "You win $#{@bet}".colorize(:green)
         player.wallet.update_money(@bet, true)
         bet(player)
       else
-        puts "You lost $#{@bet}"
+        puts "You lost $#{@bet}".colorize(:red)
         player.wallet.update_money(@bet, false)
         bet(player)
       end
     else
-      puts "There are only 2 choices"
+      puts "There are only 2 choices".colorize(:red)
       bet(player)
     end
   end

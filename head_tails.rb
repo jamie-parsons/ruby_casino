@@ -1,3 +1,5 @@
+require 'colorize'
+
 require_relative 'player'
 
 class HeadsTails
@@ -22,11 +24,11 @@ class HeadsTails
       choice = gets.to_i
       game_choice = rand(1)
       if choice == game_choice
-        puts "You win!"
+        puts "You win!".colorize(:green)
         player.wallet.update_money(@bet, true)
         bet(player)
       else
-        puts "Sorry you lose"
+        puts "Sorry you lose".colorize(:red)
         player.wallet.update_money(@bet, false)
         bet(player)
       end
