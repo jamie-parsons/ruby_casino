@@ -1,6 +1,7 @@
 #All gems up here
 require 'pry'
 require 'colorize'
+require 'sounder'
 
 #Pull in other classes you may need
 require_relative 'player'
@@ -8,6 +9,7 @@ require_relative 'head_tails'
 require_relative 'snake_eyes'
 require_relative 'high_low'
 require_relative 'blackjack'
+require_relative 'sound'
 
 class Casino
 attr_accessor :player
@@ -29,9 +31,10 @@ attr_accessor :player
     when 1
       games_menu
     when 2
+      WinSound.new
       puts player.wallet.amount
     when 3
-      puts "Quit"
+      puts "Quit".colorize(:yellow)
       exit
     else
       puts "There are only 3 options"
@@ -59,8 +62,10 @@ attr_accessor :player
     when 4
       Blackjack.new(player)
     when 5
+      WinSound.new
       puts player.wallet.amount
     when 6
+      puts "Quit".colorize(:yellow)
       exit
     else
       puts 'There are only 6 options'

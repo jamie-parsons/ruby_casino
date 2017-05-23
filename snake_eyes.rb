@@ -1,7 +1,9 @@
 require 'colorize'
+require 'sounder'
 
 require_relative 'player'
 require_relative 'dice'
+require_relative 'sound'
 
 class SnakeEyes
   attr_accessor :player, :bet
@@ -17,12 +19,13 @@ class SnakeEyes
           Or type quit to exit."
     @bet = gets.to_f
     if @bet == 0
-      puts "Goodbye!"
+      puts "Goodbye!".colorize(:yellow)
     else
     puts "You roll the Dice"
     roll = Dice.new
     roll.show_dice
       if roll.sum == 2
+        WinSound.new
         puts "You win #{@bet * 10}!".colorize(:green)
         @bet = @bet * 10
         player.wallet.update_money(@bet, true)

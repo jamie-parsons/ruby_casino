@@ -1,9 +1,11 @@
 require 'pry'
 require 'colorize'
+require 'sounder'
 
 require_relative 'player'
 require_relative 'deck'
 require_relative 'card'
+require_relative 'sound'
 
 class HighLow
   attr_accessor :player, :bet, :deck, :card_1best, :card_2best
@@ -20,7 +22,7 @@ class HighLow
           Or type 'quit' to exit"
     @bet = gets.to_f
     if @bet == 0
-      puts "Goodbye!"
+      puts "Goodbye!".colorize(:yellow)
     else
     card_1 = @deck.pop
     puts "The first card is #{card_1.suit} #{card_1.rank}"
@@ -36,6 +38,7 @@ class HighLow
     case choice
     when 1
       if @card_1best < @card_2best
+        WinSound.new
         puts "You win $#{@bet}".colorize(:green)
         player.wallet.update_money(@bet, true)
         bet(player)
@@ -46,6 +49,7 @@ class HighLow
       end
     when 2
       if @card_1best > @card_2best
+        WinSound.new
         puts "You win $#{@bet}".colorize(:green)
         player.wallet.update_money(@bet, true)
         bet(player)
