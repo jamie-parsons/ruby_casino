@@ -45,8 +45,11 @@ class Blackjack
         puts "Dealer stays at #{@dealer_total_1}"
       end
       win_lose(player)
-    elsif card_question == "N"
-      #compare hands
+    elsif card_question == "N" #compare hands
+      if @dealer_total_1 < 18
+          dealer_card_3 = card_check(d.show_card.rank)
+          @dealer_total_new = @dealer_total_1 + dealer_card_3
+          puts "The dealer's hand is #{@dealer_total_new}"
     else
       puts "Error, please make a valid entry!"
       draw(player)
