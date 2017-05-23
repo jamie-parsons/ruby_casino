@@ -42,8 +42,9 @@ attr_accessor :player
           1) Head Tails
           2) High Low
           3) Snake Eyes
-          4) Bank Roll
-          5) Quit'
+          4) BlackJack
+          5) Bank Roll
+          6) Quit'
     user_input = gets.to_i
 
     case user_input
@@ -54,11 +55,13 @@ attr_accessor :player
     when 3
       SnakeEyes.new(player)
     when 4
-      puts player.wallet.amount
+      Blackjack.new(player)
     when 5
-      puts 'quit'
+      puts player.wallet.amount
+    when 6
+      exit
     else
-      puts 'There are only 5 options'
+      puts 'There are only 6 options'
     end
   end
 end
