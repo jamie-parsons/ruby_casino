@@ -36,7 +36,7 @@ attr_accessor :player
     else
       puts "There are only 3 options"
     end
-    casino_menu
+    games_menu
   end
 
   def games_menu
@@ -65,6 +65,7 @@ attr_accessor :player
     else
       puts 'There are only 6 options'
     end
+    games_menu
   end
 end
 
