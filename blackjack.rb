@@ -3,7 +3,7 @@ require_relative "player"
 require_relative "deck"
 
 class Blackjack
-  attr_accessor :player, :bet #playerhand dealerhand push results arrays
+  attr_accessor :player, :bet, :wallet #playerhand dealerhand push results arrays
   def initialize(player)
     puts "Welcome to BlackJack!"
     puts "#{player.name} you have a balance of: #{player.wallet.amount}"
@@ -26,33 +26,39 @@ class Blackjack
     puts "Your dealer's hand is #{@dealer_total_1}"
     puts "How much would you like to bet?"
     @bet = gets.to_i
-    draw
+    draw(player)
   end
 
-  def draw
+  def draw(player)
     d = Deck.new
     puts "Would you like another card? Y for yes, N for No?"
     card_question = gets.strip
     if card_question == "Y"
       player_card_3 = card_check(d.show_card.rank)
       @player_total_new = @player_total_1 + player_card_3
-      puts "Your hand total #{player_total_new}"
+      puts "Your hand total #{@player_total_new}"
       dealer_card_3 = card_check(d.show_card.rank)
       @dealer_total_new = @dealer_total_1 + dealer_card_3
-      puts "The dealer's hand is #{dealer_total_new}"
-      win_lose
+      puts "The dealer's hand is #{@dealer_total_new}"
+      win_lose(player)
     elsif card_question == "N"
       #compare hands
     else
       puts "Error, please make a valid entry!"
-      draw
+      draw(player)
     end
   end
 
   def win_lose(player)
-    if @player_total_new > 21 || @dealer_total_new > 21
+    if @player_total_new > 21
       puts "Bust!"
-      player.wallet.update_money(@bet, )
+      player.wallet.update_money(@bet, false)
+    elsif @dealer_total_new > 21
+      puts "Dealer busts, you win!"
+      player.wallet.update_money(@bet, true)
+      BlackJack.new(player)
+
+
     # elsif player_total_1 < 21
       # puts "Would you like to draw another card?"
       # puts "Type y for yes and n for no"
