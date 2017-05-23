@@ -30,7 +30,7 @@ class Deck
 
  def show_card
    card = self.shuffle_cards.pop
-   puts "#{card.rank} #{card.suit} "
+   puts "#{card.rank} of #{card.suit}"
    card
  end
 
