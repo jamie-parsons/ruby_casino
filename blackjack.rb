@@ -35,10 +35,10 @@ class Blackjack
     card_question = gets.strip
     if card_question == "Y"
       player_card_3 = card_check(d.show_card.rank)
-      player_total_new = @player_total_1 + player_card_3
+      @player_total_new = @player_total_1 + player_card_3
       puts "Your hand total #{player_total_new}"
       dealer_card_3 = card_check(d.show_card.rank)
-      dealer_total_new = @dealer_total_1 + dealer_card_3
+      @dealer_total_new = @dealer_total_1 + dealer_card_3
       puts "The dealer's hand is #{dealer_total_new}"
       win_lose
     elsif card_question == "N"
@@ -50,8 +50,8 @@ class Blackjack
   end
 
   def win_lose(player)
-    if player_total_new > 21
-      puts "You bust!"
+    if @player_total_new > 21 || @dealer_total_new > 21
+      puts "Bust!"
       player.wallet.update_money(@bet, )
     # elsif player_total_1 < 21
       # puts "Would you like to draw another card?"
