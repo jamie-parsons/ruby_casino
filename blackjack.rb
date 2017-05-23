@@ -3,7 +3,7 @@ require_relative "player"
 require_relative "deck"
 
 class Blackjack
-  attr_accessor :player, :bet, :wallet #playerhand dealerhand push results arrays
+  attr_accessor :player, :bet, :wallet, :d #playerhand dealerhand push results arrays
   def initialize(player)
     puts "Welcome to BlackJack!"
     puts "#{player.name} you have a balance of: #{player.wallet.amount}"
@@ -14,14 +14,14 @@ class Blackjack
 
     puts "First hand:"
     # Instantiate a new deck
-    d = Deck.new
+    @d = Deck.new
   # Get all the cards in the deck
-    player_card_1 = card_check(d.show_card.rank)
-    player_card_2 = card_check(d.show_card.rank)
+    player_card_1 = card_check(@d.show_card.rank)
+    player_card_2 = card_check(@d.show_card.rank)
     @player_total_new = player_card_1 + player_card_2
     puts "Your hand total #{@player_total_new}"
-    dealer_card_1 = card_check(d.show_card.rank, true)
-    dealer_card_2 = card_check(d.show_card.rank, true)
+    dealer_card_1 = card_check(@d.show_card.rank, true)
+    dealer_card_2 = card_check(@d.show_card.rank, true)
     @dealer_total_new = dealer_card_1 + dealer_card_2
     puts "The dealer's hand total is #{@dealer_total_new}"
     puts "How much would you like to bet?"
@@ -30,17 +30,17 @@ class Blackjack
   end
 
   def draw(player)
-    d = Deck.new
+
     puts "Would you like to hit? Y for yes, N for No."
     card_question = gets.strip.upcase
     if card_question == "Y"
-      player_card_3 = card_check(d.show_card.rank)
+      player_card_3 = card_check(@d.show_card.rank)
       @player_total_new += player_card_3
       puts "Your hand total #{@player_total_new}"
       dealer_draw_stay(player)
       bust_draw(player)
     elsif card_question == "N" #compare hands
-      @player_total_new 
+      @player_total_new
       puts "You stay with #{@player_total_new}"
       dealer_draw_stay(player)
       bust_draw(player)
@@ -51,9 +51,8 @@ class Blackjack
   end
 
   def dealer_draw_stay(player)
-    d = Deck.new
     if @dealer_total_new < 18
-        dealer_card_3 = card_check(d.show_card.rank, true)
+        dealer_card_3 = card_check(@d.show_card.rank, true)
         @dealer_total_new += dealer_card_3
         puts "The dealer's hand is #{@dealer_total_new}"
     else @dealer_total_new > 18
@@ -68,7 +67,7 @@ class Blackjack
     elsif @dealer_total_new > 21
       puts "Dealer busts! You Win!"
       player.wallet.update_money(@bet, true)
-    elsif @dealer_total_new = 21
+    elsif @dealer_total_new == 21
       puts "Dealer Wins!"
       player.wallet.update_money(@bet, false)
     elsif @player_total_new > @dealer_total_new
