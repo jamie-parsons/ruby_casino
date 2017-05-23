@@ -37,14 +37,14 @@ class Blackjack
       player_card_3 = card_check(d.show_card.rank)
       @player_total_new = @player_total_1 + player_card_3
       puts "Your hand total #{@player_total_new}"
-      if @dealer_total_1 < 18
-        dealer_card_3 = card_check(d.show_card.rank)
-        @dealer_total_new = @dealer_total_1 + dealer_card_3
-        puts "The dealer's hand is #{@dealer_total_new}"
-      else
-        puts "Dealer stays at #{@dealer_total_1}"
-      end
-      win_lose(player)
+      # if @dealer_total_1 < 18
+      #   dealer_card_3 = card_check(d.show_card.rank)
+      #   @dealer_total_new = @dealer_total_1 + dealer_card_3
+      #   puts "The dealer's hand is #{@dealer_total_new}"
+      # else
+      #   puts "Dealer stays at #{@dealer_total_1}"
+      # end
+      bust_draw(player)
     elsif card_question == "N" #compare hands
       "You stay with #{@player_total_new}"
       if @dealer_total_1 < 18
