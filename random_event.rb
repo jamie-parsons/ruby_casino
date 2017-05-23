@@ -43,7 +43,12 @@ class Random
     yoda[:price] = 30.00
     yoda[:argument] = true
 
-    random_array << bathroom << bump << unicorn << gnome << cullen << deadpool << yoda
+    zeus = Hash.new
+    zeus[:description] = "Zeus walks by with a beer. He pulls downs his sunglasses to wink at you and zaps you some stacks : Win $100".colorize(:green)
+    zeus[:price] = 100.00
+    zeus[:argument] = true
+
+    random_array << bathroom << bump << unicorn << gnome << cullen << deadpool << yoda << zeus
 
     random_event = random_array.sample
     puts "#{random_event[:description]}"
