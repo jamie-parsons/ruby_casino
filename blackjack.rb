@@ -31,15 +31,19 @@ class Blackjack
 
   def draw(player)
     d = Deck.new
-    puts "Would you like another card? Y for yes, N for No?"
+    puts "Would you like to hit? Y for yes, N for No."
     card_question = gets.strip
     if card_question == "Y"
       player_card_3 = card_check(d.show_card.rank)
       @player_total_new = @player_total_1 + player_card_3
       puts "Your hand total #{@player_total_new}"
-      dealer_card_3 = card_check(d.show_card.rank)
-      @dealer_total_new = @dealer_total_1 + dealer_card_3
-      puts "The dealer's hand is #{@dealer_total_new}"
+      if @dealer_total_1 < 18
+        dealer_card_3 = card_check(d.show_card.rank)
+        @dealer_total_new = @dealer_total_1 + dealer_card_3
+        puts "The dealer's hand is #{@dealer_total_new}"
+      else
+        puts "Dealer stays at #{@dealer_total_1}"
+      end
       win_lose(player)
     elsif card_question == "N"
       #compare hands
@@ -51,12 +55,16 @@ class Blackjack
 
   def win_lose(player)
     if @player_total_new > 21
-      puts "Bust!"
+      puts "You bust!"
       player.wallet.update_money(@bet, false)
     elsif @dealer_total_new > 21
       puts "Dealer busts, you win!"
       player.wallet.update_money(@bet, true)
       BlackJack.new(player)
+    elsif @player_total_new == 21 && @dealer_total_new == 21
+      puts "Bust!"
+      player.wallet.update_money(@bet, false)
+    # elsif
 
 
     # elsif player_total_1 < 21
@@ -74,13 +82,16 @@ class Blackjack
       10
     elsif card == 'A'
       puts "Choose 1 or 11"
-      ace_input = gets.strip.to_i
-      if ace_input == 1
-         1
-      else ace_input == 11
-         11
-      end
-      card.to_i
+      ace_input = gets.strip
+      # if ace_input == "1"   #not adding totals to wallet? added else condition => didn't fix
+      #    1
+      # elsif ace_input == "11"
+      #    11
+      # else
+      #   puts "Error, please try again!"
+        card_check
+      # end
+      # card.to_i
     else
       card.to_i
     end
