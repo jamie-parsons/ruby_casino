@@ -29,9 +29,9 @@ class Deck
  end
 
  def show_card
- d = Deck.new
- card = d.shuffle_cards.pop
- puts "#{card.rank} #{card.suit} "
+   card = self.shuffle_cards.pop
+   puts "#{card.rank} #{card.suit} "
+   card
  end
 
 end

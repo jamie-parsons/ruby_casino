@@ -3,7 +3,7 @@ require_relative "player"
 require_relative "deck"
 
 class Blackjack
-  attr_accessor :player, :bet
+  attr_accessor :player, :bet #playerhand dealerhand push results arrays
   def initialize(player)
     puts "Welcome to BlackJack!"
     puts "#{player.name} you have a balance of: #{player.wallet.amount}"
@@ -14,16 +14,16 @@ class Blackjack
 
     puts "First hand:"
     # Instantiate a new deck
-    # d = Deck.new
+    d = Deck.new
   # Get all the cards in the deck
-    player_card_1 = d.show_card
-    player_card_2 = d.show_card
+    player_card_1 = card_check(d.show_card.rank)
+    player_card_2 = card_check(d.show_card.rank)
     player_total_1 = player_card_1 + player_card_2
-    puts player_total_1
-    dealer_card_1 = d.show_card
-    dealer_card_2 = d.show_card
+    puts "Your hand total #{player_total_1}"
+    dealer_card_1 = card_check(d.show_card.rank)
+    dealer_card_2 = card_check(d.show_card.rank)
     dealer_total_1 = dealer_card_1 + dealer_card_2
-    puts dealer_total_1
+    puts "Your hand total #{dealer_total_1}"
     # puts "How much would you like to bet?"
     # @bet = gets.to_i
     if player_total_1 > 21
@@ -38,28 +38,21 @@ class Blackjack
       end
     end
   end
-  
-  def card_check1(card_1)
-    if card_1.rank == 'J'
-      @card_1best = 11
-    elsif card_1.rank == 'Q'
-      @card_1best = 12
-    elsif card_1.rank == 'K'
-      @card_1best = 13
+
+  def card_check(card)
+    if card == "J" || card == "Q" || card == "K"
+      10
+    elsif card == 'A'
+      puts "Choose 1 or 11"
+      ace_input = gets.strip.to_i
+      if ace_input == 1
+         1
+      else ace_input == 11
+         11
+      end
     else
-      @card_1best = card_1.rank.to_i
+      card.to_i
     end
   end
 
-    def card_check2(card_2)
-      if card_2.rank == 'J'
-        @card_2best = 11
-      elsif card_2.rank == 'Q'
-        @card_2best = 12
-      elsif card_2.rank == 'K'
-        @card_2best = 13
-      else
-        @card_2best = card_2.rank.to_i
-      end
-    end
 end
