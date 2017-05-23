@@ -10,12 +10,12 @@ class HeadsTails
   end
 
   def bet(player)
-    playing = true
+
     puts "Place your bet or type 'Quit'"
       @bet = gets.to_f
       if @bet == 0
         puts "Goodbye!"
-      
+      else
       puts "Heads or Tails
       0) Heads
       1) Tails"
@@ -24,16 +24,14 @@ class HeadsTails
       if choice == game_choice
         puts "You win!"
         player.wallet.update_money(@bet, true)
+        bet(player)
       else
         puts "Sorry you lose"
         player.wallet.update_money(@bet, false)
+        bet(player)
       end
     end
-    while playing do
-      bet(player)
   end
-end
-
 end
 
 # def bet(player)
