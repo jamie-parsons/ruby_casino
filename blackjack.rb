@@ -24,8 +24,8 @@ class Blackjack
     dealer_card_2 = d.show_card
     dealer_total_1 = dealer_card_1 + dealer_card_2
     puts dealer_total_1
-    puts "How much would you like to bet?"
-    @bet = gets.to_i
+    # puts "How much would you like to bet?"
+    # @bet = gets.to_i
     if player_total_1 > 21
       puts "You bust!"
       player.wallet.update_money(@bet, true)
@@ -33,11 +33,33 @@ class Blackjack
       puts "Would you like to draw another card?"
       puts "Type y for yes and n for no"
       card_question = gets.strip
-      if card_question = "y"
-        player_card_1 
-
+      if card_question == "y"
+        player_card_1
       end
-      player.
     end
   end
+  
+  def card_check1(card_1)
+    if card_1.rank == 'J'
+      @card_1best = 11
+    elsif card_1.rank == 'Q'
+      @card_1best = 12
+    elsif card_1.rank == 'K'
+      @card_1best = 13
+    else
+      @card_1best = card_1.rank.to_i
+    end
+  end
+
+    def card_check2(card_2)
+      if card_2.rank == 'J'
+        @card_2best = 11
+      elsif card_2.rank == 'Q'
+        @card_2best = 12
+      elsif card_2.rank == 'K'
+        @card_2best = 13
+      else
+        @card_2best = card_2.rank.to_i
+      end
+    end
 end

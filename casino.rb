@@ -7,6 +7,7 @@ require_relative 'player'
 require_relative 'head_tails'
 require_relative 'snake_eyes'
 require_relative 'high_low'
+require_relative 'blackjack'
 
 class Casino
 attr_accessor :player
