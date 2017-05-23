@@ -10,6 +10,7 @@ require_relative 'snake_eyes'
 require_relative 'high_low'
 require_relative 'blackjack'
 require_relative 'sound'
+require_relative 'random_event'
 
 class Casino
 attr_accessor :player
@@ -33,6 +34,7 @@ attr_accessor :player
     when 2
       WinSound.new
       puts player.wallet.amount
+      Random.new(player)
     when 3
       puts "Quit".colorize(:yellow)
       exit
@@ -64,6 +66,7 @@ attr_accessor :player
     when 5
       WinSound.new
       puts player.wallet.amount
+      Random.new(player)
     when 6
       puts "Quit".colorize(:yellow)
       exit
