@@ -18,32 +18,37 @@ class HighLow
     puts "How much would you like to bet?"
     @bet = gets.to_i
     card_1 = @deck.pop
-    puts "The first card is #{card_1.rank}"
+    puts "The first card is #{card_1.suit} #{card_1.rank}"
     puts "Is the next card Higher or lower?
           1) Higher
           2) Lower"
     choice = gets.to_i
     card_2 = @deck.pop
-    puts "The next card is #{card_2.rank}"
+    puts "The next card is #{card_2.suit} #{card_2.rank}"
     card_check1(card_1)
     card_check2(card_2)
-    binding.pry
+    # binding.pry
     case choice
     when 1
       if @card_1best < @card_2best
-        puts "You win"
+        puts "You win $#{@bet}"
+        player.wallet.update_money(@bet, true)
       else
-        puts "You Lose"
+        puts "You lost $#{@bet}"
+        player.wallet.update_money(@bet, false)
       end
     when 2
       if @card_1best > @card_2best
-        puts "You lose"
+        puts "You win $#{@bet}"
+        player.wallet.update_money(@bet, true)
       else
-        puts "You win"
+        puts "You lost $#{@bet}"
+        player.wallet.update_money(@bet, false)
       end
     else
       puts "There are only 2 choices"
     end
+
   end
 
   def card_check1(card_1)
