@@ -24,35 +24,44 @@ class Blackjack
     dealer_card_2 = card_check(d.show_card.rank)
     @dealer_total_1 = dealer_card_1 + dealer_card_2
     puts "Your dealer's hand is #{@dealer_total_1}"
+    puts "How much would you like to bet?"
+    @bet = gets.to_i
     draw
   end
 
   def draw
     d = Deck.new
-    puts "How much would you like to bet?"
-    @bet = gets.to_i
     puts "Would you like another card? Y for yes, N for No?"
     card_question = gets.strip
     if card_question == "Y"
-      player_card_1 = card_check(d.show_card.rank)
-      player_total_new = @player_total_1 + player_card_1
+      player_card_3 = card_check(d.show_card.rank)
+      player_total_new = @player_total_1 + player_card_3
       puts "Your hand total #{player_total_new}"
-      dealer_card_1 = card_check(d.show_card.rank)
-      dealer_total_new = @dealer_total_1 + dealer_card_1
-      puts "The dealer's hand is #{player_total_new}"
+      dealer_card_3 = card_check(d.show_card.rank)
+      dealer_total_new = @dealer_total_1 + dealer_card_3
+      puts "The dealer's hand is #{dealer_total_new}"
+      win_lose
+    elsif card_question == "N"
+      #compare hands
+    else
+      puts "Error, please make a valid entry!"
+      draw
     end
-    # if player_total_1 > 21
-    #   puts "You bust!"
-    #   player.wallet.update_money(@bet, true)
-    # elsif player_total_1 < 21
-    #   puts "Would you like to draw another card?"
-    #   puts "Type y for yes and n for no"
-    #   card_question = gets.strip
-    #   if card_question == "y"
-    #     player_card_1
-    #   end
-    # end
   end
+
+  def win_lose(player)
+    if player_total_new > 21
+      puts "You bust!"
+      player.wallet.update_money(@bet, )
+    # elsif player_total_1 < 21
+      # puts "Would you like to draw another card?"
+      # puts "Type y for yes and n for no"
+      # card_question = gets.strip
+      # if card_question == "y"
+      #   player_card_1
+      end
+    end
+
 
   def card_check(card)
     if card == "J" || card == "Q" || card == "K"
@@ -65,6 +74,7 @@ class Blackjack
       else ace_input == 11
          11
       end
+      card.to_i
     else
       card.to_i
     end
