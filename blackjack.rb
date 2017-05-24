@@ -76,6 +76,9 @@ class Blackjack
     elsif @player_total_new == 21
       puts "You Win!"
       player.wallet.update_money(@bet, true)
+    elsif @player_total_new == @dealer_total_new
+      puts "Dealer Wins!"
+      player.wallet.update_money(@bet, false)
       BlackJack.new(player)
       end
     end
